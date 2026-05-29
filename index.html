@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Important Letter</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#1a1a1a;
+    font-family:Georgia, serif;
+    overflow:hidden;
+}
+
+.envelope, .letter{
+    background:#f5e6c8;
+    color:#222;
+    border-radius:10px;
+    box-shadow:0 0 30px rgba(0,0,0,.5);
+}
+
+.envelope{
+    width:350px;
+    height:220px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    cursor:pointer;
+    padding:20px;
+}
+
+.envelope h2{
+    margin:0;
+}
+
+.letter{
+    display:none;
+    width:700px;
+    max-width:90%;
+    padding:40px;
+}
+
+.loading{
+    width:100%;
+    height:20px;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
+    margin:20px 0;
+}
+
+.bar{
+    width:0%;
+    height:100%;
+    background:#555;
+}
+
+.reveal{
+    display:none;
+    text-align:center;
+    font-size:48px;
+    font-weight:bold;
+    margin:30px 0;
+}
+
+.shake{
+    animation:shake .3s infinite;
+}
+
+@keyframes shake{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-5px);}
+    50%{transform:translateX(5px);}
+    75%{transform:translateX(-5px);}
+    100%{transform:translateX(0);}
+}
+</style>
+</head>
+<body>
+
+<div class="envelope" id="envelope">
+    <h2>
+        ⚠️ Important Personal Letter<br><br>
+        Helha sahbi w matndmech
+    </h2>
+</div>
+
+<div class="letter" id="letter">
+
+<h1>Dear Friend,</h1>
+
+<p>
+There are things in life that are difficult to say.
+Some words stay trapped in our hearts for years.
+</p>
+
+<p>
+We've shared memories, laughs, and moments I will never forget.
+</p>
+
+<p>
+I rewrote this letter many times trying to find the perfect words.
+</p>
+
+<p>
+Today, I finally found the courage...
+</p>
+
+<div class="loading">
+    <div class="bar" id="bar"></div>
+</div>
+
+<p id="status">Preparing heartfelt message...</p>
+
+<div class="reveal" id="reveal">
+    TECHEDLI ZEBI YE MNEYK
+</div>
+
+<p style="text-align:center">
+With deepest sincerity,<br>
+NAKES MEN LWABNA
+</p>
+
+</div>
+
+<script>
+
+document.getElementById("envelope").onclick = () => {
+
+    document.getElementById("envelope").style.display="none";
+    document.getElementById("letter").style.display="block";
+
+    let width = 0;
+    const bar = document.getElementById("bar");
+
+    const interval = setInterval(() => {
+
+        width++;
+
+        bar.style.width = width + "%";
+
+        if(width >= 100){
+            clearInterval(interval);
+
+            document.getElementById("status").innerHTML =
+            "Message successfully loaded.";
+
+            const reveal = document.getElementById("reveal");
+
+            reveal.style.display="block";
+
+            document.body.classList.add("shake");
+
+            setTimeout(()=>{
+                document.body.classList.remove("shake");
+            },2000);
+        }
+
+    },50);
+}
+</script>
+
+</body>
+  </html>
